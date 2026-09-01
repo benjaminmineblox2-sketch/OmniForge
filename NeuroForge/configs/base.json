@@ -1,0 +1,25 @@
+{
+  "model": {
+    "vocab_size": 32000,
+    "hidden_size": 768,
+    "num_layers": 16,
+    "num_attention_heads": 12,
+    "intermediate_size": 2048,
+    "max_position_embeddings": 2048,
+    "dropout": 0.0
+  },
+  "training": {
+    "learning_rate": 0.0003,
+    "ppo_clip": 0.2,
+    "gamma": 0.99,
+    "gae_lambda": 0.95
+  },
+  "memory": {
+    "max_items": 10000,
+    "retrieval_k": 8
+  },
+  "affect": {
+    "enabled": true,
+    "dimensions": ["valence", "arousal", "curiosity", "confidence", "frustration"]
+  }
+}
