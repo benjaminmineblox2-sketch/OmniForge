@@ -1,9 +1,14 @@
+from pathlib import Path
+
 from fastapi import FastAPI
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
+
 from NeuroForge.core.affect import AffectState
 from NeuroForge.core.memory import MemoryStore
 
-app = FastAPI(title="NeuroForge API", version="0.2.0")
+ROOT = Path(__file__).resolve().parents[1]
+app = FastAPI(title="NeuroForge API", version="0.3.0")
 memory = MemoryStore()
 affect = AffectState()
 
@@ -13,6 +18,10 @@ class ChatRequest(BaseModel):
     reward: float = 0.0
     novelty: float = 0.05
     success: float = 0.0
+
+@app.get("/")
+def index():
+    return FileResponse(ROOT / "index.html", media_type="text/html")
 
 @app.get("/health")
 def health():
